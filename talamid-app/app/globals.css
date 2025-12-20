@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* Custom Talamid Branding & Scrollbar Fix */
+@theme {
+  --color-primary-dark: #121A4B;
+  --color-primary-light: #4A1A9C;
+  --color-secondary-blue: #232D6A;
+  --color-sidebar-active: #E0E7FF;
+  --color-sidebar-text: #666666;
+  --color-accent: #FF8C00;
+  --color-bg-light: #f4f6f9;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
