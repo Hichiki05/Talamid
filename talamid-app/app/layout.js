@@ -36,21 +36,29 @@ export default function RootLayout({ children }) {
               <hr className="border-none h-[1px] bg-[#eeeeee] w-full" />
             </div>
 
-        
             <nav className="flex-1 overflow-y-auto px-4 pb-32">
-              {navItems.map((item) => (
-                <Link 
-                  key={item.href} 
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center py-3 px-4 text-sm transition-colors rounded-xl mb-2
-                    ${pathname === item.href ? 'bg-sidebar-active text-primary-light font-bold' : 'text-sidebar-text hover:bg-sidebar-active hover:text-primary-light'}
-                  `}
-                >
-                  <i className={`fas ${item.icon} w-5 mr-3`}></i>
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+
+                const isActive = item.href === '/' 
+                  ? pathname === '/' 
+                  : pathname.startsWith(item.href);
+
+                return (
+                  <Link 
+                    key={item.href} 
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`flex items-center py-3 px-4 text-sm transition-colors rounded-xl mb-2
+                      ${isActive 
+                        ? 'bg-sidebar-active text-primary-light font-bold' 
+                        : 'text-sidebar-text hover:bg-sidebar-active hover:text-primary-light'}
+                    `}
+                  >
+                    <i className={`fas ${item.icon} w-5 mr-3`}></i>
+                    {item.name}
+                  </Link>
+                );
+              })}
             </nav>
 
             <div className="absolute bottom-0 left-0 w-full bg-white p-5 border-t border-[#eeeeee]">
@@ -68,7 +76,6 @@ export default function RootLayout({ children }) {
 
           {/* Main Content Area */}
           <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
-            
             {/* Mobile Header */}
             <div className="md:hidden flex justify-between items-center p-4 bg-white shadow-sm z-50 shrink-0">
               <div className="h-8">
@@ -79,7 +86,6 @@ export default function RootLayout({ children }) {
               </div>
             </div>
 
-            {/* Scrollable Page Content */}
             <main className="flex-1 overflow-y-auto overflow-x-hidden p-6 md:p-10">
               {children}
             </main>
@@ -92,7 +98,6 @@ export default function RootLayout({ children }) {
               onClick={() => setIsMenuOpen(false)}
             />
           )}
-
         </div>
       </body>
     </html>
