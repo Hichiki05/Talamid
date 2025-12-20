@@ -25,12 +25,10 @@ export default function RootLayout({ children }) {
       <body className="bg-bgLight text-[#333] h-screen overflow-hidden">
         <div className="flex h-full w-full relative">
           
-          {/* Sidebar */}
           <aside className={`
             fixed top-0 left-0 h-full bg-white w-[220px] flex flex-col z-[100] shadow-md transition-transform duration-300
             md:translate-x-0 md:relative shrink-0 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}
           `}>
-            {/* Logo Section */}
             <div className="px-5 pt-8 mb-6 shrink-0">
               <img src="/data/talamid-logo.png" alt="Logo" className="max-w-[80%] mb-6 block" />
               <hr className="border-none h-[1px] bg-[#eeeeee] w-full" />
@@ -74,7 +72,6 @@ export default function RootLayout({ children }) {
             </div>
           </aside>
 
-          {/* Main Content Area */}
           <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
             {/* Mobile Header */}
             <div className="md:hidden flex justify-between items-center p-4 bg-white shadow-sm z-50 shrink-0">
@@ -91,7 +88,6 @@ export default function RootLayout({ children }) {
             </main>
           </div>
 
-          {/* Mobile Overlay */}
           {isMenuOpen && (
             <div 
               className="fixed inset-0 bg-black/20 z-[90] md:hidden" 

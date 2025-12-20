@@ -6,7 +6,6 @@ export default function ExercicesPage2() {
     const router = useRouter();
     const fileInputRef = useRef(null);
     
-    // State management
     const [formData, setFormData] = useState({ subject: '', description: '' });
     const [files, setFiles] = useState([]);
     const [errors, setErrors] = useState({ subject: false, description: false, files: false });
@@ -17,7 +16,6 @@ export default function ExercicesPage2() {
         selectedFiles.forEach(file => {
             const fileId = Date.now() + Math.random();
             const fileSizeKB = (file.size / 1024).toFixed(0);
-            
 
             const newFile = {
                 id: fileId,
@@ -29,7 +27,6 @@ export default function ExercicesPage2() {
             };
             
             setFiles(prev => [...prev, newFile]);
-
 
             let progress = 0;
             const interval = setInterval(() => {
@@ -52,11 +49,9 @@ export default function ExercicesPage2() {
         setErrors(prev => ({ ...prev, files: false }));
     };
 
-
     const removeFile = (id) => {
         setFiles(prev => prev.filter(f => f.id !== id));
     };
-
 
     const handleNext = () => {
         const isSubjectValid = formData.subject.trim() !== "";
@@ -70,7 +65,7 @@ export default function ExercicesPage2() {
         });
 
         if (isSubjectValid && isDescriptionValid && hasCompletedFiles) {
-            router.push('/exercices/step3'); // Navigates to page 3
+            router.push('/exercices/step3');
         } else {
             alert("Veuillez remplir l'objet, la description et ajouter au moins un fichier.");
         }
@@ -82,7 +77,6 @@ export default function ExercicesPage2() {
                 <h1 className="text-[28px] font-bold text-[#121A4B]">L'envoi</h1>
                 <p className="text-[#888] mt-1">Soumettez votre problème pour obtenir une correction détaillée d'un professeur.</p>
             </header>
-
 
             <div className="flex justify-between relative mb-12 mt-10 px-4 items-center">
                 <div className="absolute top-1/2 left-[10%] right-[10%] h-[1px] bg-[#ddd] -translate-y-1/2 z-0"></div>
@@ -107,7 +101,6 @@ export default function ExercicesPage2() {
             </div>
 
             <form className="bg-white p-6 md:p-8 rounded-[12px] shadow-sm border border-[#eeeeee]">
-
                 <div className="mb-10">
                     <h3 className="text-[18px] font-semibold text-[#121A4B] border-l-4 border-[#4A1A9C] pl-3 mb-4">Objet</h3>
                     <input 
@@ -118,7 +111,6 @@ export default function ExercicesPage2() {
                         onChange={(e) => setFormData({...formData, subject: e.target.value})}
                     />
                 </div>
-
 
                 <div className="mb-10">
                     <h3 className="text-[18px] font-semibold text-[#121A4B] border-l-4 border-[#4A1A9C] pl-3 mb-4">Description du problème / Question</h3>
@@ -131,7 +123,6 @@ export default function ExercicesPage2() {
                     />
                 </div>
 
-   
                 <div>
                     <h3 className="text-[18px] font-semibold text-[#121A4B] border-l-4 border-[#4A1A9C] pl-3 mb-2">Upload files</h3>
                     <p className="text-[#888] text-sm mb-6">Choisissez ce que vous souhaitez que l'instructeur fasse pour vous.</p>

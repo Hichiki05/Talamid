@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 export default function ExercicesPage3() {
     const router = useRouter();
     
-    // Form State
     const [cardData, setCardData] = useState({
         number: '',
         expiry: '',
@@ -14,18 +13,15 @@ export default function ExercicesPage3() {
         paymentMethod: 'card'
     });
     
-    // UI State
     const [showModal, setShowModal] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [errors, setErrors] = useState({});
 
-    // 1. Format Card Number (16 digits only)
     const handleCardNumber = (val) => {
         const cleaned = val.replace(/\D/g, '').substring(0, 16);
         setCardData({ ...cardData, number: cleaned });
     };
 
-    // 2. Format Expiry (MM/YY)
     const handleExpiry = (val) => {
         let v = val.replace(/\D/g, '');
         if (v.length >= 2) v = v.substring(0, 2) + '/' + v.substring(2, 4);
@@ -49,7 +45,6 @@ export default function ExercicesPage3() {
         }
     };
 
-
     const confirmPayment = () => {
         setIsSuccess(true);
        
@@ -65,7 +60,6 @@ export default function ExercicesPage3() {
                 <p className="text-[#888]">Déposez votre problème pour obtenir une correction détaillée d'un professeur.</p>
             </header>
 
-            {/* Stepper */}
             <div className="flex justify-between relative mb-12 mt-10 px-4 items-center">
                 <div className="absolute top-1/2 left-[10%] right-[10%] h-[1px] bg-[#ddd] -translate-y-1/2 z-0"></div>
                 <div className="z-10 bg-[#f4f6f9] px-2"><span className="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center text-white"><i className="fas fa-check"></i></span></div>
@@ -75,7 +69,6 @@ export default function ExercicesPage3() {
 
             <div className="bg-white border border-[#eeeeee] rounded-xl p-6 md:p-8 shadow-sm">
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                    {/* Wallet Card */}
                     <div className="border border-[#ddd] rounded-xl p-6 flex flex-col justify-center">
                         <div className="flex justify-between items-center text-[#888] text-xs font-bold uppercase tracking-wider">
                             <span>Solde du portefeuille</span>
@@ -85,7 +78,6 @@ export default function ExercicesPage3() {
                         <button className="w-full py-2 border border-[#ddd] rounded-lg text-[#666] text-sm hover:bg-gray-50 transition-all">Ajouter des fonds</button>
                     </div>
 
-                    {/* Total Card */}
                     <div className="bg-[#7c69ef] text-white rounded-xl p-6 relative">
                         <div className="flex items-baseline gap-4">
                             <span className="text-xl opacity-90">Total</span>
@@ -99,7 +91,6 @@ export default function ExercicesPage3() {
                     </div>
                 </div>
 
-                {/* Form Section */}
                 <div>
                     <p className="text-[#666] mb-4 text-sm">Vous pouvez payer directement ici :</p>
                     <div className="flex items-center gap-3 p-4 border-b border-[#eee] font-medium">

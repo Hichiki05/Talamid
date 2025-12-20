@@ -79,12 +79,15 @@ export default function HomePage() {
       prof: course.prof,
       img: course.img
     });
-    router.push(`/cours2?${params.toString()}`);
+    router.push(`/cours/step2?${params.toString()}`);
+  };
+
+  const handleSubjectClick = (subjectName) => {
+    router.push('/cours');
   };
 
   return (
     <div className="animate-in fade-in duration-500 max-w-full overflow-x-hidden">
-      {/* Hero Banner */}
       <section className="bg-gradient-to-br from-primary-light to-primary-dark text-white p-10 rounded-xl mb-10 shadow-lg">
         <h1 className="text-4xl font-bold mb-[10px]">Maîtrisez vos études.<br />Construisez votre avenir.</h1>
         <p className="text-base opacity-80 max-w-[600px] mb-[30px]">
@@ -106,7 +109,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Subjects Grid */}
       <section className="mb-10 overflow-hidden">
         <div className="flex justify-between items-center mb-5">
           <h2 className="text-[22px] font-bold text-primary-dark">Parcourir par matière</h2>
@@ -115,6 +117,7 @@ export default function HomePage() {
           {subjects.map((sub) => (
             <div 
               key={sub.name} 
+              onClick={() => handleSubjectClick(sub.name)} // Navigation added here
               className="flex items-center bg-white border border-[#e0e0e0] px-[20px] py-[12px] rounded-[50px] font-bold whitespace-nowrap cursor-pointer hover:border-primary-light hover:bg-primary-light/5 hover:shadow-sm transition-all"
             >
               <i className={`fas ${sub.icon} mr-3`} style={{ color: sub.color }}></i>
@@ -124,7 +127,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trending Courses */}
       <section className="pb-10">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-[22px] font-bold text-primary-dark">Cours tendance</h2>
@@ -137,7 +139,7 @@ export default function HomePage() {
           {trendingCourses.map((course) => (
             <div 
               key={course.id} 
-              onClick={() => handleCourseClick(course)}
+              onClick={() => handleCourseClick(course)} // Navigation function used here
               className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-100 group"
             >
               <div className="relative aspect-video overflow-hidden">
@@ -162,7 +164,6 @@ export default function HomePage() {
                     <span>{course.subject}</span>
                   </div>
                   
-                  {/* Prof Name and Prof Photo Profile */}
                   <div className="flex items-center gap-2">
                     <span className="text-[11px] text-primary-dark font-bold">
                       {course.prof}
