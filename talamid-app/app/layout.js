@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
               <hr className="border-none h-[1px] bg-[#eeeeee] w-full" />
             </div>
 
-            {/* Navigation - Leaves space at the bottom for the fixed profile */}
+        
             <nav className="flex-1 overflow-y-auto px-4 pb-32">
               {navItems.map((item) => (
                 <Link 
@@ -53,7 +53,6 @@ export default function RootLayout({ children }) {
               ))}
             </nav>
 
-            {/* Student Info - FIXED TO BOTTOM */}
             <div className="absolute bottom-0 left-0 w-full bg-white p-5 border-t border-[#eeeeee]">
               <div className="flex items-center">
                 <div className="w-10 h-10 bg-[#f0f2f5] rounded-full mr-3 flex items-center justify-center text-primary-dark border border-gray-100 shrink-0">

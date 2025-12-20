@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Custom Talamid Branding & Scrollbar Fix */
+
 @theme {
   --color-primary-dark: #121A4B;
   --color-primary-light: #4A1A9C;

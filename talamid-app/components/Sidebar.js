@@ -7,7 +7,6 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Your links from the original HTML
   const navItems = [
     { name: 'Accueil', href: '/', icon: 'fa-home' },
     { name: 'Tableau de bord', href: '/tableau-de-bord', icon: 'fa-border-all' },
@@ -19,7 +18,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Header: This replaces your .mobile-header from HTML */}
       <div className="md:hidden flex justify-between items-center p-4 bg-white sticky top-0 z-[150] shadow-sm">
         <div className="h-8">
           <img src="/data/talamid-logo.png" alt="Logo" className="h-full object-contain" />
@@ -29,7 +27,6 @@ export default function Sidebar() {
         </button>
       </div>
 
-      {/* Dark Overlay for Mobile Menu */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-[90] md:hidden" 
@@ -37,7 +34,6 @@ export default function Sidebar() {
         />
       )}
 
-      {/* Main Sidebar: This is your .sidebar from CSS */}
       <aside className={`fixed top-0 left-0 h-full w-[200px] bg-white shadow-md z-[100] flex flex-col transition-transform duration-300 
         ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 border-r border-gray-100`}>
         
@@ -50,7 +46,7 @@ export default function Sidebar() {
 
         <nav className="flex-grow">
           {navItems.map((item) => {
-            // This logic handles the "active" class from your main.js
+
             const isActive = pathname === item.href;
             return (
               <Link 
@@ -69,7 +65,7 @@ export default function Sidebar() {
           })}
         </nav>
 
-        {/* User Info Section */}
+
         <div className="flex items-center px-6 mb-10 mt-auto">
           <div className="w-8 h-8 bg-[#ddd] rounded-full mr-3"></div>
           <div>

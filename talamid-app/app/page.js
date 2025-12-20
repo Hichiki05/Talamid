@@ -19,7 +19,7 @@ const trendingCourses = [
     title: "Comprendre enfin les Dérivées : Le guide complet", 
     subject: "Maths", 
     prof: "Prof. Ahmed", 
-    profImg: "/data/prof-icon/prof-icon1.png", // Added prof image
+    profImg: "/data/prof-icon/prof-icon1.png",
     time: "14:20", 
     img: "/data/video-photos/ux/photo6.png" 
   },
@@ -28,7 +28,7 @@ const trendingCourses = [
     title: "Newton's Laws of Motion", 
     subject: "Physique", 
     prof: "Sarah Bennani", 
-    profImg: "/data/prof-icon/prof-icon2.png", // Added prof image
+    profImg: "/data/prof-icon/prof-icon2.png", 
     time: "14:20", 
     img: "/data/video-photos/Ux/photo1.png" 
   },
@@ -37,7 +37,7 @@ const trendingCourses = [
     title: "Writing a Philosophical Essay", 
     subject: "Philo", 
     prof: "Dr. Yassine", 
-    profImg: "/data/prof-icon/prof-icon3.png", // Added prof image
+    profImg: "/data/prof-icon/prof-icon3.png", 
     time: "18:45", 
     img: "/data/video-photos/Ux/photo2.png" 
   },
@@ -46,7 +46,7 @@ const trendingCourses = [
     title: "Comment tracer une Fonction Affine sans se tromper", 
     subject: "Maths", 
     prof: "Prof. Laila", 
-    profImg: "/data/prof-icon/prof-icon2.png", // Added prof image
+    profImg: "/data/prof-icon/prof-icon2.png", 
     time: "12:10", 
     img: "/data/video-photos/Ux/photo3.png" 
   },
@@ -55,7 +55,7 @@ const trendingCourses = [
     title: "Le Logarithme Népérien : Pourquoi c'est utile?", 
     subject: "Maths", 
     prof: "Prof. Karim", 
-    profImg: "/data/prof-icon/prof-icon4.png", // Added prof image
+    profImg: "/data/prof-icon/prof-icon4.png", 
     time: "20:30", 
     img: "/data/video-photos/Ux/photo4.png" 
   },
@@ -64,7 +64,7 @@ const trendingCourses = [
     title: "Maîtriser les Études de Variations pas à pas", 
     subject: "Maths", 
     prof: "Miss Jane", 
-    profImg: "/data/prof-icon/prof-icon6.png", // Added prof image
+    profImg: "/data/prof-icon/prof-icon6.png",
     time: "10:15", 
     img: "/data/video-photos/Ux/photo5.png" 
   },
