@@ -13,8 +13,7 @@ export default function RootLayout({ children }) {
     { name: 'Tableau de bord', href: '/dashboard', icon: 'fa-border-all' },
     { name: 'Cours', href: '/cours', icon: 'fa-book' },
     { name: 'Exercices', href: '/exercices', icon: 'fa-dumbbell' },
-    { name: 'Portefeuille', href: '/portefeuille', icon: 'fa-briefcase' },
-    { name: 'Réservations', href: '/reservations', icon: 'fa-calendar-alt' },
+    { name: 'Profile', href: '/profile', icon: 'fa-briefcase' },
   ];
 
   return (

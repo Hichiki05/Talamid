@@ -12,8 +12,8 @@ export default function Sidebar() {
     { name: 'Tableau de bord', href: '/tableau-de-bord', icon: 'fa-border-all' },
     { name: 'Cours', href: '/cours', icon: 'fa-book' },
     { name: 'Exercices', href: '/exercices', icon: 'fa-dumbbell' },
-    { name: 'Portefeuille', href: '/portefeuille', icon: 'fa-briefcase' },
-    { name: 'Réservations', href: '/reservations', icon: 'fa-calendar-alt' },
+    { name: 'Profile', href: '/profile', icon: 'fa-briefcase' },
+
   ];
 
   return (
@@ -46,7 +46,6 @@ export default function Sidebar() {
 
         <nav className="flex-grow">
           {navItems.map((item) => {
-
             const isActive = pathname === item.href;
             return (
               <Link 
@@ -64,7 +63,6 @@ export default function Sidebar() {
             );
           })}
         </nav>
-
 
         <div className="flex items-center px-6 mb-10 mt-auto">
           <div className="w-8 h-8 bg-[#ddd] rounded-full mr-3"></div>

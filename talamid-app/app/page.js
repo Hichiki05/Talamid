@@ -34,7 +34,7 @@ const trendingCourses = [
   },
   { 
     id: 3, 
-    title: "Writing a Philosophical Essay", 
+    title: "Rédiger une dissertation philosophique", 
     subject: "Philo", 
     prof: "Dr. Yassine", 
     profImg: "/data/prof-icon/prof-icon3.png", 
