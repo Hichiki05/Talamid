@@ -29,7 +29,6 @@ export default function ProfilePage() {
     <main className="max-w-6xl mx-auto pb-20 font-sans px-4">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-      {/* 1. BANNER SECTION */}
       <div className="relative h-48 md:h-64 w-full rounded-3xl overflow-hidden bg-gray-200 shadow-sm mt-4">
         <img src={banner} alt="Banner" className="w-full h-full object-cover" />
         <button 
@@ -43,7 +42,6 @@ export default function ProfilePage() {
 
       <div className="flex flex-col md:flex-row items-center md:items-end justify-between px-8 -mt-12 mb-10 relative z-20">
         <div className="flex flex-col md:flex-row items-center md:items-end gap-6">
-          {/* Profile Picture */}
           <div className="relative group">
             <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white overflow-hidden bg-white shadow-xl">
               <img src={profilePic} alt="Profile" className="w-full h-full object-cover" />
@@ -80,7 +78,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Action Button */}
         <div className="mt-6 md:mt-0 pb-2">
            <button 
               onClick={() => setIsEditing(!isEditing)}
@@ -91,7 +88,6 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* 3. STATS CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         <div className="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center justify-between">
            <div className="flex items-center gap-4">
@@ -109,10 +105,8 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* 4. MAIN CONTENT GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          {/* Wallet Section */}
           <div className="bg-white p-8 rounded-[32px] border border-gray-50 shadow-sm">
             <h2 className="text-xl font-black text-[#121A4B] mb-6">Portefeuille</h2>
             <div className="grid md:grid-cols-2 gap-4 mb-8">
@@ -142,7 +136,6 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* Exercises History */}
           <div className="bg-white p-8 rounded-[32px] border border-gray-50 shadow-sm overflow-hidden">
              <div className="flex justify-between items-center mb-8">
                 <h2 className="text-xl font-black text-[#121A4B]">Mes Exercices</h2>
@@ -167,7 +160,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* 5. FOLLOWING LIST */}
         <div className="bg-white p-8 rounded-[32px] border border-gray-50 shadow-sm h-fit">
            <h2 className="text-xl font-black text-[#121A4B] mb-8">Professeurs</h2>
            <div className="space-y-6">

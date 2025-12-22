@@ -38,7 +38,6 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {/* Updated Wallet Card with the 'from' parameter */}
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
           <div className="flex justify-between items-start mb-4">
             <div>
@@ -71,7 +70,6 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Activity Chart Section */}
       <section className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm mb-10">
         <h3 className="font-bold text-[#121A4B] mb-8">Activité d'apprentissage (Heures)</h3>
         <div className="flex h-64 gap-4">
@@ -95,7 +93,6 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Video Grid Section */}
       <section>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold text-[#121A4B]">Dernières vidéos</h2>

@@ -5,7 +5,6 @@ export default function TeacherDashboard() {
   const fileInputRef = useRef(null);
   const [hovered, setHovered] = useState(false);
   
-  // State for the delete logic
   const [requests, setRequests] = useState([
     { id: 1, initial: "HB", name: "Hamza.B" },
     { id: 2, initial: "SR", name: "Maryam.T" },
@@ -23,7 +22,6 @@ export default function TeacherDashboard() {
   return (
     <div className="flex-1 bg-[#F8F9FB] p-8 overflow-y-auto no-scrollbar">
       
-      {/* 1. Header Section */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-[24px] font-black text-primary-dark">
           Bienvenue Karim sur votre tableau de bord

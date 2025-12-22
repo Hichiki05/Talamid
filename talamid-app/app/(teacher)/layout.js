@@ -1,70 +1,90 @@
 "use client";
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
-export default function TeacherLayout({ children }) {
+export default function StudentLayout({ children }) { 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const menuItems = [
-    { name: 'Tableau de bord', icon: 'fa-home', path: '/teacher-dashboard' },
-    { name: 'Professional Hub', icon: 'fa-graduation-cap', path: '/professional-hub' },
+  const navItems = [
+    { name: 'Professional Hub', href: '/professional-hub', icon: 'fa-home' },
+
+    { name: 'Tableau de bord', href: '/teacher-dashboard', icon: 'fa-border-all' },
+    
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] flex">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <div className="flex h-screen w-full relative bg-bgLight text-[#333] overflow-hidden">
       
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-100 flex flex-col fixed h-full">
-        <div className="p-6">
-          <div className="flex items-center gap-2 text-[#5c4df3] mb-10">
-            <div className="w-8 h-8 bg-[#5c4df3] rounded-lg flex items-center justify-center text-white">
-              <i className="fas fa-book-open text-xs"></i>
-            </div>
-            <span className="text-xl font-black tracking-tight text-[#121A4B]">Talamid</span>
-          </div>
-
-          <nav className="space-y-2">
-            {menuItems.map((item) => {
-              
-              const isActive = item.path === '/teacher-dashboard' 
-                ? pathname === item.path 
-                : pathname.startsWith(item.path);
-
-              return (
-                <Link 
-                  key={item.name} 
-                  href={item.path}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-all ${
-                    isActive 
-                      ? 'bg-indigo-50 text-[#5c4df3]' 
-                      : 'text-gray-400 hover:bg-gray-50'
-                  }`}
-                >
-                  <i className={`fas ${item.icon}`}></i>
-                  {item.name}
-                </Link>
-              );
-            })}
-          </nav>
+      <aside className={`
+        fixed top-0 left-0 h-full bg-white w-[220px] flex flex-col z-[100] shadow-md transition-transform duration-300
+        md:translate-x-0 md:relative shrink-0 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        <div className="px-5 pt-8 mb-6 shrink-0">
+          <img src="/data/talamid-logo.png" alt="Logo" className="max-w-[80%] mb-6 block" />
+          <hr className="border-none h-[1px] bg-[#eeeeee] w-full" />
         </div>
 
-        {/* Role Switcher Footer */}
-        <div className="mt-auto p-4 border-t border-gray-50 bg-gray-50/50">
-          <div className="flex items-center gap-2 bg-white p-1.5 rounded-xl shadow-sm border border-gray-100">
-            <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] font-bold">AA</div>
-            <div className="flex bg-gray-100 rounded-lg p-1 text-[8px] font-black w-full">
-              <div className="bg-[#5c4df3] text-white px-2 py-1 rounded-md flex-1 text-center">Teacher</div>
+        <nav className="flex-1 overflow-y-auto px-4 pb-32">
+          {navItems.map((item) => {
+            const isActive = item.href === '/' 
+              ? pathname === '/' 
+              : pathname.startsWith(item.href);
+
+            return (
+              <Link 
+                key={item.href} 
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`flex items-center py-3 px-4 text-sm transition-colors rounded-xl mb-2
+                  ${isActive 
+                    ? 'bg-sidebar-active text-primary-light font-bold' 
+                    : 'text-sidebar-text hover:bg-sidebar-active hover:text-primary-light'}
+                `}
+              >
+                <i className={`fas ${item.icon} w-5 mr-3`}></i>
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="absolute bottom-0 left-0 w-full bg-white p-5 border-t border-[#eeeeee]">
+          <div className="flex items-center">
+            <div className="w-10 h-10 bg-[#f0f2f5] rounded-full mr-3 flex items-center justify-center text-primary-dark border border-gray-100 shrink-0">
+               <i className="fas fa-user text-sm"></i>
+            </div>
+            <div className="overflow-hidden">
+              <div className="text-[14px] font-bold text-primary-dark truncate">User Name</div>
+              <div className="text-[12px] text-[#888]">ENSEIGNANT</div>
             </div>
           </div>
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <main className="flex-1 ml-64 p-8">
-        {children}
-      </main>
+      <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
+        <div className="md:hidden flex justify-between items-center p-4 bg-white shadow-sm z-50 shrink-0">
+          <div className="h-8">
+            <img src="/data/talamid-logo.png" alt="Logo" className="h-full" />
+          </div>
+          <div className="text-2xl text-primary-dark cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+          </div>
+        </div>
+
+        <main className="flex-1 overflow-y-auto overflow-x-hidden p-6 md:p-10">
+          {children}
+        </main>
+      </div>
+
+      {isMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/20 z-[90] md:hidden" 
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
     </div>
   );
 }

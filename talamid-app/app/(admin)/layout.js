@@ -8,11 +8,11 @@ export default function StudentLayout({ children }) { // Renommé pour plus de c
   const pathname = usePathname();
 
   const navItems = [
-    { name: 'Accueil', href: '/', icon: 'fa-home' },
-    { name: 'Tableau de bord', href: '/dashboard', icon: 'fa-border-all' },
-    { name: 'Cours', href: '/cours', icon: 'fa-book' },
-    { name: 'Exercices', href: '/exercices', icon: 'fa-dumbbell' },
-    { name: 'Profile', href: '/profile', icon: 'fa-briefcase' },
+    { name: 'Tableau de bord', href: '/tableau-de-bord', icon: 'fa-home' },
+    { name: 'Utilisateur et roles', href: '/utilisateur-et-roles', icon: 'fa-border-all' },
+    { name: 'Contenue et opérations', href: '/contenu-et-operations', icon: 'fa-book' },
+    { name: 'Finance et  paramètres', href: '/finance-et-parametres', icon: 'fa-dumbbell' },
+    
   ];
 
   return (
@@ -58,7 +58,7 @@ export default function StudentLayout({ children }) { // Renommé pour plus de c
             </div>
             <div className="overflow-hidden">
               <div className="text-[14px] font-bold text-primary-dark truncate">User Name</div>
-              <div className="text-[12px] text-[#888]">Étudiant</div>
+              <div className="text-[12px] text-[#888]">ADMIN</div>
             </div>
           </div>
         </div>

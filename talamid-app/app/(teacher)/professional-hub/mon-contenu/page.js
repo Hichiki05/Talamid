@@ -134,7 +134,6 @@ export default function MonContenuPage() {
         </div>
       </div>
 
-      {/* 3. Onglets de Navigation */}
       <div className="flex bg-[#F8F9FB] border border-gray-100 rounded-xl p-1 mb-8">
         <Link href="/professional-hub" className="flex-1">
           <button className="w-full py-4 rounded-lg text-xs font-black text-gray-400 hover:text-[#5c4df3] transition-all cursor-pointer">
@@ -152,7 +151,6 @@ export default function MonContenuPage() {
         </Link>
       </div>
 
-      {/* 4. Grille de Contenu */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         <div className="space-y-6">

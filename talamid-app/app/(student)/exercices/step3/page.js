@@ -6,7 +6,6 @@ function PaymentContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     
-    // Check if the user is here to recharge via the Dashboard
     const isFromDashboard = searchParams.get('from') === 'dashboard_action';
     
     const [cardData, setCardData] = useState({
@@ -23,7 +22,6 @@ function PaymentContent() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [errors, setErrors] = useState({});
 
-    // Formatting Logic
     const handleCardNumber = (val) => {
         const cleaned = val.replace(/\D/g, '').substring(0, 16);
         setCardData({ ...cardData, number: cleaned });
@@ -55,12 +53,10 @@ function PaymentContent() {
     const confirmPayment = () => {
         setIsProcessing(true);
         
-        // Simulate a small delay for bank verification
         setTimeout(() => {
             setIsProcessing(false);
             setIsSuccess(true);
             
-            // Redirect after showing success message
             setTimeout(() => {
                 router.push(isFromDashboard ? '/dashboard' : '/exercices');
             }, 4000);
@@ -82,7 +78,6 @@ function PaymentContent() {
                 </p>
             </header>
 
-            {/* PROGRESS STEPPER (Only for exercise flow) */}
             {!isFromDashboard && (
                 <div className="flex justify-between relative mb-12 mt-10 px-4 items-center">
                     <div className="absolute top-1/2 left-[10%] right-[10%] h-[1px] bg-[#ddd] -translate-y-1/2 z-0"></div>
@@ -95,7 +90,6 @@ function PaymentContent() {
             <div className="bg-white border border-[#eeeeee] rounded-xl p-6 md:p-8 shadow-sm">
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                     
-                    {/* WALLET BOX */}
                     <div className="border border-[#ddd] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
                         <div className="flex justify-between items-center text-[#888] text-xs font-bold uppercase tracking-wider mb-2">
                             <span>{isFromDashboard ? "Montant à recharger" : "Solde actuel"}</span>
@@ -120,7 +114,6 @@ function PaymentContent() {
                         </p>
                     </div>
 
-                    {/* TOTAL BOX (Only for exercise flow) */}
                     {!isFromDashboard && (
                         <div className="bg-[#7c69ef] text-white rounded-xl p-6 relative flex flex-col justify-center">
                             <div className="flex items-baseline gap-4">
@@ -135,7 +128,6 @@ function PaymentContent() {
                     )}
                 </div>
 
-                {/* FORM */}
                 <div className="space-y-6">
                     <h4 className="font-bold text-[#121A4B] text-sm flex items-center gap-2">
                         <i className="fas fa-credit-card"></i> Détails de la carte
@@ -196,7 +188,6 @@ function PaymentContent() {
                 </div>
             </div>
 
-            {/* MODAL */}
             {showModal && (
                 <div className="fixed inset-0 bg-[#121A4B]/60 backdrop-blur-sm z-[2000] flex items-center justify-center p-4">
                     <div className="bg-white rounded-[24px] p-10 w-full max-w-[420px] text-center relative shadow-2xl animate-in fade-in zoom-in duration-300">

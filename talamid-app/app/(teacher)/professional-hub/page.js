@@ -42,12 +42,10 @@ export default function ProfessionalHub() {
   return (
     <div className="flex-1 bg-white p-8 overflow-y-auto no-scrollbar font-sans">
       
-      {/* 1. Header Title */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-[20px] font-black text-[#121A4B]">Professional Hub</h1>
       </div>
 
-      {/* 2. Banner & Profile Section */}
       <div className="relative mb-6">
         <div 
           style={{ height: '180px' }} 
@@ -128,7 +126,6 @@ export default function ProfessionalHub() {
         </div>
       </div>
 
-      {/* 3. Navigation Tabs */}
       <div className="flex bg-[#F8F9FB] border border-gray-100 rounded-xl p-1 mb-8">
         <button 
           onClick={() => setActiveTab('identite')}
@@ -136,7 +133,6 @@ export default function ProfessionalHub() {
         >
           <i className="far fa-user mr-2"></i> Identité & Tarifs
         </button>
-
 
         <Link href="/professional-hub/mon-contenu" className="flex-1">
             <button className="w-full py-4 text-gray-400 text-xs font-black cursor-pointer hover:text-[#5c4df3] transition-colors">
