@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-export default function StudentLayout({ children }) { // Renommé pour plus de clarté
+export default function StudentLayout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const navItems = [
-    { name: 'Accueil', href: '/', icon: 'fa-home' },
+    { name: 'Accueil', href: '/home', icon: 'fa-home' },
     { name: 'Tableau de bord', href: '/dashboard', icon: 'fa-border-all' },
     { name: 'Cours', href: '/cours', icon: 'fa-book' },
     { name: 'Exercices', href: '/exercices', icon: 'fa-dumbbell' },
@@ -51,15 +51,25 @@ export default function StudentLayout({ children }) { // Renommé pour plus de c
           })}
         </nav>
 
-        <div className="absolute bottom-0 left-0 w-full bg-white p-5 border-t border-[#eeeeee]">
-          <div className="flex items-center">
-            <div className="w-10 h-10 bg-[#f0f2f5] rounded-full mr-3 flex items-center justify-center text-primary-dark border border-gray-100 shrink-0">
-               <i className="fas fa-user text-sm"></i>
+        {/* Section Profil avec le bouton S'abonner */}
+        <div className="absolute bottom-0 left-0 w-full bg-white p-4 border-t border-[#eeeeee]">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center overflow-hidden">
+              <div className="w-9 h-9 bg-[#f0f2f5] rounded-full mr-2 flex items-center justify-center text-primary-dark border border-gray-100 shrink-0">
+                 <i className="fas fa-user text-xs"></i>
+              </div>
+              <div className="overflow-hidden">
+                <div className="text-[13px] font-bold text-primary-dark truncate">User Name</div>
+                <div className="text-[11px] text-[#888]">Étudiant</div>
+              </div>
             </div>
-            <div className="overflow-hidden">
-              <div className="text-[14px] font-bold text-primary-dark truncate">User Name</div>
-              <div className="text-[12px] text-[#888]">Étudiant</div>
-            </div>
+            
+            <Link 
+              href="/subscribe" 
+              className="bg-[#5246E5] text-black text-[12px] font-black px-3 py-1.5 rounded-lg hover:opacity-90 transition-all shrink-0"
+            >
+              S'abonner
+            </Link>
           </div>
         </div>
       </aside>

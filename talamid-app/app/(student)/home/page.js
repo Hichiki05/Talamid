@@ -25,7 +25,7 @@ const trendingCourses = [
   },
   { 
     id: 2, 
-    title: "Newton's Laws of Motion", 
+    title: "Lois du mouvement de Newton", 
     subject: "Physique", 
     prof: "Sarah Bennani", 
     profImg: "/data/prof-icon/prof-icon2.png", 
@@ -52,7 +52,7 @@ const trendingCourses = [
   },
   { 
     id: 5, 
-    title: "Le Logarithme Népérien : Pourquoi c'est utile?", 
+    title: "Le Logarithme Népérien : Pourquoi c'est utile ?", 
     subject: "Maths", 
     prof: "Prof. Karim", 
     profImg: "/data/prof-icon/prof-icon4.png", 
@@ -63,7 +63,7 @@ const trendingCourses = [
     id: 6, 
     title: "Maîtriser les Études de Variations pas à pas", 
     subject: "Maths", 
-    prof: "Miss Jane", 
+    prof: "Mme Jane", 
     profImg: "/data/prof-icon/prof-icon6.png",
     time: "10:15", 
     img: "/data/video-photos/Ux/photo5.png" 
@@ -117,7 +117,7 @@ export default function HomePage() {
           {subjects.map((sub) => (
             <div 
               key={sub.name} 
-              onClick={() => handleSubjectClick(sub.name)} // Navigation added here
+              onClick={() => handleSubjectClick(sub.name)} 
               className="flex items-center bg-white border border-[#e0e0e0] px-[20px] py-[12px] rounded-[50px] font-bold whitespace-nowrap cursor-pointer hover:border-primary-light hover:bg-primary-light/5 hover:shadow-sm transition-all"
             >
               <i className={`fas ${sub.icon} mr-3`} style={{ color: sub.color }}></i>
@@ -139,7 +139,7 @@ export default function HomePage() {
           {trendingCourses.map((course) => (
             <div 
               key={course.id} 
-              onClick={() => handleCourseClick(course)} // Navigation function used here
+              onClick={() => handleCourseClick(course)} 
               className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-100 group"
             >
               <div className="relative aspect-video overflow-hidden">
