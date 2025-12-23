@@ -189,7 +189,7 @@ export default function MonContenuPage() {
                   <h4 className="text-[14px] font-black text-[#121A4B] line-clamp-1 mb-4">{video.title}</h4>
                   <button 
                     onClick={() => openDeleteModal(video.id)}
-                    className="w-full py-2.5 rounded-xl bg-red-50 text-red-500 text-[12px] font-black hover:bg-red-500 hover:text-white transition-all cursor-pointer"
+                    className="w-full py-2.5 rounded-xl bg-red-50 text-red-500 text-[12px] font-black hover:bg-white hover:text-white transition-all cursor-pointer"
                   >
                     Supprimer
                   </button>
@@ -221,7 +221,7 @@ export default function MonContenuPage() {
                </button>
                <button 
                  onClick={confirmDelete} 
-                 className="flex-1 text-white py-3 bg-red-500 rounded-xl font-black text-xs hover:bg-red-600 transition-all cursor-pointer shadow-md"
+                 className="flex-1 text-gray-500 py-3 bg-red-500 rounded-xl font-black text-xs hover:bg-red-600 transition-all cursor-pointer shadow-md"
                >
                  Supprimer
                </button>

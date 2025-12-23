@@ -181,7 +181,7 @@ function PriceCard({ id, title, desc, price, editingId, setEditingId, onPriceCha
         onClick={() => setEditingId(isEditing ? null : id)}
         className={`w-full py-4 rounded-2xl text-[12px] font-black transition-all cursor-pointer border ${
           isEditing 
-          ? 'bg-primary-dark text-white border-primary-dark' 
+          ? 'bg-primary-dark text-dark border-primary-dark' 
           : 'bg-bg-light text-sidebar-text border-gray-100 hover:bg-sidebar-active hover:text-primary-light'
         }`}
       >
