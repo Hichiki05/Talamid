@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 import React from 'react';
 
 const CheckIcon = ({ color = "#5246E5" }) => (
@@ -10,6 +10,26 @@ const CheckIcon = ({ color = "#5246E5" }) => (
 export default function SubscriptionPage() {
   const primaryBrand = "#5246E5";
   const darkBlue = "#1E1B4B";
+
+  const handleSubscribe = async (amount) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/payment/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ studentId: 1, amount }) // replace 1 with actual studentId dynamically if needed
+      });
+      const data = await response.json();
+      if (data.success) {
+        // Redirect to Paymee payment page
+        window.location.href = data.data.paymentUrl;
+      } else {
+        alert('Payment failed: ' + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error initiating payment');
+    }
+  };
 
   return (
     <div className="min-h-screen py-16 px-4 font-sans" style={{ backgroundColor: '#F8FAFF', color: darkBlue }}>
@@ -77,13 +97,13 @@ export default function SubscriptionPage() {
             <li className="flex items-center gap-3 font-bold text-sm"><CheckIcon color={primaryBrand} /> Corrections d'exercices</li>
             <li className="flex items-center gap-3 font-bold text-sm"><CheckIcon color={primaryBrand} /> Explications audio & texte</li>
           </ul>
-          <a 
-            href="/"
+          <button
+            onClick={() => handleSubscribe(99)}
             className="w-full py-5 rounded-2xl font-black text-white transition-all hover:opacity-90 shadow-xl uppercase text-[10px] tracking-widest flex items-center justify-center cursor-pointer active:scale-[0.98]"
             style={{ backgroundColor: primaryBrand }}
           >
             S'abonner
-          </a>
+          </button>
         </div>
 
         {/* Plan 3: Pro Learning */}
@@ -106,15 +126,16 @@ export default function SubscriptionPage() {
             <li className="flex items-center gap-3 font-bold text-sm"><CheckIcon color="white" /> Explications Vidéos</li>
             <li className="flex items-center gap-3 font-bold text-sm"><CheckIcon color="white" /> Sessions Live 1-on-1</li>
           </ul>
-          <a 
-            href="/"
+          <button
+            onClick={() => handleSubscribe(199)}
             className="w-full bg-white py-5 rounded-2xl font-black transition-all hover:bg-gray-50 shadow-xl relative z-10 uppercase text-[10px] tracking-widest flex items-center justify-center cursor-pointer active:scale-[0.98]"
             style={{ color: primaryBrand }}
           >
             S'abonner
-          </a>
+          </button>
         </div>
       </div>
     </div>
   );
 }
+
