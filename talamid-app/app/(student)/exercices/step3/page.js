@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 function PaymentContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     
+    // Vérification de la provenance pour adapter le texte
     const isFromDashboard = searchParams.get('from') === 'dashboard_action';
     
     const [cardData, setCardData] = useState({
@@ -20,17 +21,26 @@ function PaymentContent() {
     const [showModal, setShowModal] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({
+        number: false,
+        expiry: false,
+        cvc: false,
+        country: false
+    });
 
+    // Masquage du numéro de carte (formatage)
     const handleCardNumber = (val) => {
         const cleaned = val.replace(/\D/g, '').substring(0, 16);
-        setCardData({ ...cardData, number: cleaned });
+        setCardData(prev => ({ ...prev, number: cleaned }));
+        if (errors.number) setErrors(prev => ({ ...prev, number: false }));
     };
 
+    // Formatage de la date d'expiration (MM/YY)
     const handleExpiry = (val) => {
         let v = val.replace(/\D/g, '');
         if (v.length >= 2) v = v.substring(0, 2) + '/' + v.substring(2, 4);
-        setCardData({ ...cardData, expiry: v.substring(0, 5) });
+        setCardData(prev => ({ ...prev, expiry: v.substring(0, 5) }));
+        if (errors.expiry) setErrors(prev => ({ ...prev, expiry: false }));
     };
 
     const handleFinish = () => {
@@ -43,31 +53,36 @@ function PaymentContent() {
 
         setErrors(newErrors);
 
+        // Si aucune erreur, on ouvre le modal
         if (Object.values(newErrors).every(err => !err)) {
             setShowModal(true);
-        } else {
-            alert("Veuillez remplir correctement les informations de paiement.");
         }
     };
 
     const confirmPayment = () => {
         setIsProcessing(true);
         
-        setTimeout(() => {
+        // Simulation de l'appel API avec nettoyage des timeouts
+        const processingTimer = setTimeout(() => {
             setIsProcessing(false);
             setIsSuccess(true);
             
-            setTimeout(() => {
+            const redirectTimer = setTimeout(() => {
                 router.push(isFromDashboard ? '/dashboard' : '/exercices');
             }, 4000);
+
+            return () => clearTimeout(redirectTimer);
         }, 1500);
+
+        return () => clearTimeout(processingTimer);
     };
 
     return (
         <div className="max-w-5xl mx-auto pb-20 px-4 md:px-0 font-sans">
+            {/* FontAwesome est mieux placé dans le layout.js, mais laissé ici pour votre fichier unique */}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
             
-            <header className="mb-8">
+            <header className="mb-8 pt-10">
                 <h2 className="text-[28px] font-bold text-[#121A4B]">
                     {isFromDashboard ? "Recharger mon compte" : "Paiement"}
                 </h2>
@@ -90,7 +105,7 @@ function PaymentContent() {
             <div className="bg-white border border-[#eeeeee] rounded-xl p-6 md:p-8 shadow-sm">
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                     
-                    <div className="border border-[#ddd] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                    <div className={`border rounded-xl p-6 flex flex-col justify-center min-h-[160px] transition-all ${isFromDashboard ? 'border-indigo-100 bg-indigo-50/30' : 'border-[#ddd]'}`}>
                         <div className="flex justify-between items-center text-[#888] text-xs font-bold uppercase tracking-wider mb-2">
                             <span>{isFromDashboard ? "Montant à recharger" : "Solde actuel"}</span>
                             <i className="fas fa-wallet text-green-500 text-lg"></i>
@@ -115,7 +130,7 @@ function PaymentContent() {
                     </div>
 
                     {!isFromDashboard && (
-                        <div className="bg-[#7c69ef] text-white rounded-xl p-6 relative flex flex-col justify-center">
+                        <div className="bg-[#7c69ef] text-white rounded-xl p-6 relative flex flex-col justify-center shadow-lg shadow-indigo-100">
                             <div className="flex items-baseline gap-4">
                                 <span className="text-xl opacity-90">Total</span>
                                 <span className="text-4xl font-bold">50.00 DH</span>
@@ -140,7 +155,7 @@ function PaymentContent() {
                                 value={cardData.number}
                                 onChange={(e) => handleCardNumber(e.target.value)}
                                 placeholder="Numéro de carte"
-                                className={`w-full p-4 bg-[#f9f9f9] border rounded-xl outline-none transition-all ${errors.number ? 'border-red-500' : 'border-[#eee] focus:border-[#4A1A9C]'}`}
+                                className={`w-full p-4 bg-[#f9f9f9] border rounded-xl outline-none transition-all ${errors.number ? 'border-red-500 bg-red-50' : 'border-[#eee] focus:border-[#4A1A9C]'}`}
                             />
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
                                 <img src="https://img.icons8.com/color/48/000000/visa.png" className="w-8" alt="Visa" />
@@ -154,22 +169,28 @@ function PaymentContent() {
                                 value={cardData.expiry}
                                 onChange={(e) => handleExpiry(e.target.value)}
                                 placeholder="MM/YY"
-                                className={`p-4 bg-[#f9f9f9] border rounded-xl outline-none ${errors.expiry ? 'border-red-500' : 'border-[#eee]'}`}
+                                className={`p-4 bg-[#f9f9f9] border rounded-xl outline-none transition-all ${errors.expiry ? 'border-red-500 bg-red-50' : 'border-[#eee] focus:border-[#4A1A9C]'}`}
                             />
                             <input 
                                 type="text" 
                                 maxLength="3"
                                 value={cardData.cvc}
-                                onChange={(e) => setCardData({...cardData, cvc: e.target.value.replace(/\D/g, '')})}
+                                onChange={(e) => {
+                                    setCardData({...cardData, cvc: e.target.value.replace(/\D/g, '')});
+                                    if(errors.cvc) setErrors(prev => ({...prev, cvc: false}));
+                                }}
                                 placeholder="CVC"
-                                className={`p-4 bg-[#f9f9f9] border rounded-xl outline-none ${errors.cvc ? 'border-red-500' : 'border-[#eee]'}`}
+                                className={`p-4 bg-[#f9f9f9] border rounded-xl outline-none transition-all ${errors.cvc ? 'border-red-500 bg-red-50' : 'border-[#eee] focus:border-[#4A1A9C]'}`}
                             />
                         </div>
 
                         <select 
                             value={cardData.country}
-                            onChange={(e) => setCardData({...cardData, country: e.target.value})}
-                            className={`w-full p-4 bg-[#f9f9f9] border rounded-xl outline-none ${errors.country ? 'border-red-500' : 'border-[#eee]'}`}
+                            onChange={(e) => {
+                                setCardData({...cardData, country: e.target.value});
+                                if(errors.country) setErrors(prev => ({...prev, country: false}));
+                            }}
+                            className={`w-full p-4 bg-[#f9f9f9] border rounded-xl outline-none transition-all ${errors.country ? 'border-red-500 bg-red-50' : 'border-[#eee] focus:border-[#4A1A9C]'}`}
                         >
                             <option value="">Sélectionnez un pays</option>
                             <option value="MA">Maroc</option>
@@ -181,16 +202,17 @@ function PaymentContent() {
                 <div className="flex justify-end mt-10">
                     <button 
                         onClick={handleFinish}
-                        className="bg-[#5c4df3] text-white px-12 py-4 rounded-xl font-bold flex items-center gap-3 hover:bg-[#4a3dc2] transition-all shadow-lg shadow-indigo-200"
+                        className="bg-[#5c4df3] text-white px-12 py-4 rounded-xl font-bold flex items-center gap-3 hover:bg-[#4a3dc2] transition-all shadow-lg shadow-indigo-200 active:scale-95"
                     >
                         Suivant <i className="fas fa-chevron-right text-xs"></i>
                     </button>
                 </div>
             </div>
 
+            {/* Modal de Confirmation / Succès */}
             {showModal && (
                 <div className="fixed inset-0 bg-[#121A4B]/60 backdrop-blur-sm z-[2000] flex items-center justify-center p-4">
-                    <div className="bg-white rounded-[24px] p-10 w-full max-w-[420px] text-center relative shadow-2xl animate-in fade-in zoom-in duration-300">
+                    <div className="bg-white rounded-[24px] p-10 w-full max-w-[420px] text-center relative shadow-2xl">
                         {!isSuccess ? (
                             <>
                                 {!isProcessing && (
@@ -244,9 +266,15 @@ function PaymentContent() {
     );
 }
 
+// Wrapper avec Suspense pour gérer useSearchParams() dans Next.js
 export default function ExercicesPage3() {
     return (
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen text-[#121A4B] font-bold">Chargement du module de paiement...</div>}>
+        <Suspense fallback={
+            <div className="flex flex-col items-center justify-center min-h-screen text-[#121A4B]">
+                <div className="w-12 h-12 border-4 border-[#5c4df3] border-t-transparent rounded-full animate-spin mb-4"></div>
+                <p className="font-bold">Chargement du module de paiement...</p>
+            </div>
+        }>
             <PaymentContent />
         </Suspense>
     );

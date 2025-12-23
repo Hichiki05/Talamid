@@ -1,0 +1,175 @@
+Talamid Backend
+Overview
+
+This backend is built with Node.js and Express and provides APIs for:
+
+Task 2: Exercise Submission
+
+Task 4: Payment Integration
+
+Prerequisites
+
+Node.js v18+ (node-v20.19.6-x64.msi)
+
+npm (comes with Node.js)
+
+MySQL / WAMPServer 
+
+Setup
+
+Clone the repository:
+
+git clone https://github.com/Hichiki05/Talamid.git
+cd talamid-backend
+
+
+Install dependencies:
+
+npm install
+
+
+Create .env file (example):
+
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=talamid_db
+
+PAYMEE_API_KEY=your_api_key
+PAYMEE_BASE_URL=https://sandbox.paymee.tn
+PAYMENT_CALLBACK_URL=http://localhost:5000/api/payment/webhook
+
+Create MySQL database:
+
+CREATE DATABASE talamid_db;
+
+
+Use phpMyAdmin to run this command.
+
+Run backend server:
+
+npm run dev
+
+
+The backend will be available at: http://localhost:5000
+
+API Endpoints
+Task 2 – Exercise Submission
+
+URL: POST http://localhost:5000/api/exercise/submit
+
+Accepts: studentId, exerciseId, notes, files 
+
+Example with Postman:
+
+Method: POST
+
+Body: form-data
+
+studentId: 1
+
+exerciseId: 1
+
+notes: "Exercise description"
+
+files: select files
+
+Response: JSON  
+{
+  "success": true,
+  "message": "Exercise submitted successfully",
+  "data": {
+    {
+      "submissionId": 2
+    }
+  }
+
+Run backend:
+
+npm run dev
+
+
+Submit Step 2
+
+Backend terminal MUST show:
+
+Uploaded files: [ ... ]
+MODEL QUERY VALUES: [ 1, 1, 'uploads/exercises/xxx.pdf', 'notes' ]
+
+-------------------------------------------------------------
+
+Task 4 – Payment Creation
+
+URL: POST http://localhost:5000/api/payment/create
+
+Accepts: Payment details (amount, student info, etc.)
+
+Example with Postman:
+
+Method: POST
+
+Body: JSON
+
+{
+  "studentId": 1,
+  "amount": 150,
+  
+}
+
+
+Response: JSON 
+
+{
+  "success": true,
+  "data": {
+    "paymentId": 2,
+    "paymentUrl": "https://payment-gateway.test/pay/2"
+  }
+}
+
+
+
+The backend then calls the Paymee API using your API key.
+
+Paymee responds with payment status:
+
+success: status in DB is updated to success
+
+failure: status in DB is updated to failed
+
+pending: still waiting for confirmation
+
+You can verify the payment record in MySQL:
+
+SELECT * FROM payments WHERE studentId = 1 ORDER BY createdAt DESC;
+
+
+The response returned from backend:
+
+{
+  "success": true,
+  "paymentId": 1,
+  "status": "pending",
+  "message": "Payment created, awaiting confirmation"
+}
+
+
+
+
+
+
+
+
+
+Notes
+
+Ensure the MySQL database is running before starting the backend.
+
+Backend must run before testing APIs in Postman.
+
+To reset data, truncate tables in MySQL as needed.
+
+CORS is already enabled for frontend requests.
+
+
