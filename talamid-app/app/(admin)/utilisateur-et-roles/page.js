@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function GestionUtilisateurs() {
   const [users, setUsers] = useState([
-    { id: 1, name: "Hamza Banani", email: "Hamza.banani@gmail.com", role: "ENSEIGNANT", status: "ACTIF", date: "Oct 12, 2023", img: "https://i.pravatar.cc/150?u=male1" },
+    { id: 1, name: "Hamza Banani", email: "Hamza.banani@gmail.com", role: "ENSEIGNANT", status: "ACTIF", date: "Oct 12, 2023", img: "https://i.pravatar.cc/150?u=female4" },
     { id: 2, name: "Safae Radi", email: "safae.1290@gmail.com", role: "ENSEIGNANT", status: "ACTIF", date: "Oct 12, 2023", img: "https://i.pravatar.cc/150?u=female1" },
     { id: 3, name: "Mariam Houssni", email: "marryjawad@gmail.com", role: "ENSEIGNANT", status: "ACTIF", date: "Oct 12, 2023", img: "https://i.pravatar.cc/150?u=female2" },
-    { id: 4, name: "Laila Taliss", email: "laila@gmail.com", role: "ÉTUDIANT", status: "ACTIF", date: "Oct 13, 2023", img: "https://i.pravatar.cc/150?u=female4" },
+    { id: 4, name: "Laila Taliss", email: "laila@gmail.com", role: "ÉTUDIANT", status: "ACTIF", date: "Oct 13, 2023", img: "https://i.pravatar.cc/150?u=male1" },
     { id: 5, name: "Siham Alaoui", email: "siham@gmail.com", role: "ÉTUDIANT", status: "SUSPENDU", date: "Oct 14, 2023", img: "https://i.pravatar.cc/150?u=female3" },
   ]);
 
